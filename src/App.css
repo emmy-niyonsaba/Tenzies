@@ -60,6 +60,11 @@ button {
     background-color: white;
     font-size: 1.75rem;
     font-weight: bold;
+    
+     
+}
+.dice-container button:hover{
+    background-color: #8c43ec;
 }
 .roll-dice {
     height: 50px;
