@@ -1,10 +1,13 @@
 
 
 function Die(props) {
-    const{value}=props
+    const{value, isHeld, hold}=props
+    const dieColor={
+      backgroundColor: props.isHeld ? "#59E391" : "white"
+    }
   return (
     <>
-        <button>{value}</button>
+        <button style={dieColor} onClick={hold}>{value}</button>
     </>
   )
 }
