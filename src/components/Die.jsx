@@ -7,6 +7,7 @@ function Die(props) {
     }
   return (
     <>
+          
         <button style={dieColor} onClick={hold}>{value}</button>
     </>
   )
