@@ -6,11 +6,11 @@ function DiesDisplyer() {
 function generateDies() {
     const newDies = []
     for (let i = 0; i < 10; i++) {
-      newDies.push(Math.ceil(Math.random() * 6))
+      newDies.push({value: Math.ceil(Math.random() * 6), isHeld: false})
     }
     return newDies
   }
-  const diceElements = dies.map((die, index) => <Die key={index} value={die} />)
+  const diceElements = dies.map((die, index) => <Die key={index} value={die.value} isHeld={die.isHeld} />)
 
   function rollDies() {
     setDies(generateDies())
