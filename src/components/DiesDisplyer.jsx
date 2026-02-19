@@ -2,6 +2,7 @@ import { useState } from "react"
 import Die from "./Die"
 import { nanoid } from "nanoid"
 import Won from "./Won"
+import Conffeti from "./Conffeti"
 function DiesDisplyer() {
   const [dies, setDies] = useState(()=>generateDies())
   let gameWon = dies.every(die => die.isHeld && die.value === dies[0].value)
@@ -43,6 +44,7 @@ function DiesDisplyer() {
       <>
       
         <main>
+              {gameWon && (<Conffeti/>)}
               {gameWon && (<Won/>)}
            <h1 className="title">Emmanuel Tenzies</h1>
             <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
