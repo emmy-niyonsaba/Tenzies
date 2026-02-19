@@ -1,8 +1,12 @@
 import { useState } from "react"
 import Die from "./Die"
 import { nanoid } from "nanoid"
+import Won from "./Won"
 function DiesDisplyer() {
-  const [dies, setDies] = useState(generateDies())
+  const [dies, setDies] = useState(()=>generateDies())
+  let gameWon = dies.every(die => die.isHeld && die.value === dies[0].value)
+
+  
   function generateDies() {
     const newDies = []
     for (let i = 0; i < 10; i++) {
@@ -30,10 +34,8 @@ function DiesDisplyer() {
     />)
 
     function rollDies() {
-       setDies(oldDice => oldDice.map(die => 
-            die.isHeld ?
-                die :
-                { ...die, value: Math.ceil(Math.random() * 6) }
+       gameWon ? setDies(generateDies()) :setDies(oldDice => oldDice.map(die => 
+            die.isHeld ?die :{ ...die, value: Math.ceil(Math.random() * 6) }
         ))
     }
 
@@ -41,12 +43,13 @@ function DiesDisplyer() {
       <>
       
         <main>
+              {gameWon && (<Won/>)}
            <h1 className="title">Tenzies</h1>
             <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
           <div className="dice-container">
             {diceElements}
           </div>
-          <button className="roll-dice" onClick={rollDies}>Roll Dice</button>
+          <button className="roll-dice" onClick={rollDies}>{gameWon ? "Play Again" : "Roll Dice"}</button>
         </main>
       </>
     )
