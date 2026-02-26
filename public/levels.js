@@ -1,2 +1,2 @@
-   export  const levels =["Easy", "Medium", "Hard "]
+   export const levels = ["Easy", "Medium", "Hard", "Professional"]
    
