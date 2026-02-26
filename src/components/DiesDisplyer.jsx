@@ -5,9 +5,12 @@ import Won from "./Won"
 import Conffeti from "./Conffeti"
 
 function DiesDisplyer() {
+  // Centralized time values (seconds) for each difficulty
+  const times = { easy: 90, medium: 60, hard: 30, professional: 15 }
+
   const [dies, setDies] = useState(() => generateDies())
   // Time is stored in seconds
-  const [timeLeft, setTimeLeft] = useState(180) 
+  const [timeLeft, setTimeLeft] = useState(times.easy)
   const [gameStarted, setGameStarted] = useState(false)
   const [difficulty, setDifficulty] = useState("easy")
 
@@ -43,7 +46,6 @@ function DiesDisplyer() {
   // 2. Level Handler
   function handleLevelChange(level) {
     setDifficulty(level)
-    const times = { easy: 180, medium: 120, hard: 60 }
     setTimeLeft(times[level])
     resetGame()
   }
@@ -52,7 +54,6 @@ function DiesDisplyer() {
     setDies(generateDies())
     setGameStarted(false)
     // Reset time based on current difficulty
-    const times = { easy: 180, medium: 120, hard: 60 }
     setTimeLeft(times[difficulty])
   }
 
@@ -98,12 +99,13 @@ function DiesDisplyer() {
       <h1 className="title">Emmanuel Tenzies</h1>
       
       <div className="difficulty-container">
-        <button className={difficulty === "easy" ? "active" : ""} onClick={() => handleLevelChange("easy")}>Easy (3m)</button>
-        <button className={difficulty === "medium" ? "active" : ""} onClick={() => handleLevelChange("medium")}>Medium (2m)</button>
-        <button className={difficulty === "hard" ? "active" : ""} onClick={() => handleLevelChange("hard")}>Hard (1m)</button>
+        <button className={difficulty === "easy" ? "active" : ""} onClick={() => handleLevelChange("easy")}>Easy (1m 30s)</button>
+        <button className={difficulty === "medium" ? "active" : ""} onClick={() => handleLevelChange("medium")}>Medium (1m)</button>
+        <button className={difficulty === "hard" ? "active" : ""} onClick={() => handleLevelChange("hard")}>Hard (30s)</button>
+        <button className={difficulty === "professional" ? "active" : ""} onClick={() => handleLevelChange("professional")}>Professional (15s)</button>
       </div>
 
-      <div className="timer-display">
+      <div className="timer">
         Time Left: <span style={{ color: timeLeft < 10 ? "red" : "black" }}>{formatTime(timeLeft)}</span>
       </div>
 
