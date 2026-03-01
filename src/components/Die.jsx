@@ -5,6 +5,7 @@ function Die(props) {
     const dieColor={
       backgroundColor: props.isHeld ? "#59E391" : "white"
     }
+    //cifhdfdhf
   return (
     <>
           
