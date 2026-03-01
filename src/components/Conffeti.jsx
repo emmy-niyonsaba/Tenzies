@@ -5,6 +5,7 @@ function Conffeti() {
     const { width, height } = useWindowSize();
   return (
     <div>
+      // eslint-disable-next-line react/react-in-jsx-scope
       <Confetti width={width} height={height} />
     </div>
   )
